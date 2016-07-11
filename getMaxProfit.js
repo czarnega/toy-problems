@@ -22,6 +22,10 @@ Example:
 */
 
 const getMaxProfit = (pricesArray) => {
+	if(pricesArray.length < 2){
+		return 'Error, pricesArray must have at least two stock prices!'
+	}
+	
 	let minPrice = pricesArray[0];
 	let maxProfit = pricesArray[1] - pricesArray[0];
 
