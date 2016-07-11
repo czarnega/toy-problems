@@ -21,23 +21,22 @@ Example:
 
 */
 
-const getMaxProfit = (array) => {
-	let minPrice = array[0];
-	let maxProfit = 0;
+const getMaxProfit = (pricesArray) => {
+	let minPrice = pricesArray[0];
+	let maxProfit = pricesArray[1] - pricesArray[0];
 
-	for(let i = 0; i < array.length; i++) {
-		let currentPrice = array[i];
-		
-		// check to see if currentPrice is less than minPrice,
-		// if so, set minPrice to currentPrice
-		minPrice = currentPrice < minPrice ? currentPrice : minPrice;
+	for(let i = 1; i < pricesArray.length; i++) {
+		let currentPrice = pricesArray[i];
 		
 		// calculate potentialProfit
 		const potentialProfit = currentPrice - minPrice;
-		
 		// check to see if potentialProfit is greater than maxProfit,
 		// if so, set maxProfit to potentialProfit
 		maxProfit = potentialProfit > maxProfit ? potentialProfit : maxProfit;
+
+		// check to see if currentPrice is less than minPrice,
+		// if so, set minPrice to currentPrice
+		minPrice = currentPrice < minPrice ? currentPrice : minPrice;
 	}
 
 	return maxProfit;
