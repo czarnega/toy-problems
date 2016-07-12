@@ -3,25 +3,14 @@
 // coins = [1,2,5,10,20,50,100,200]
 const coinSums = (target) => {
 	const coins = [1,2,5,10,20,50,100,200];
-	let maxCoinIDX;
-	let lookupTable = [];
-	for(let i = 0; i < coins.length; i++){
-		if(coins[i] <= target){
-			maxCoinIDX = i;
-			lookupTable.push([]);
+	let index = 0;
+	let lookup = [1];
+	while(coins[index] <= target){
+		for(let i = coins[index]; i <= target; i++){
+			lookup[i] = lookup[i] || 0;
+			lookup[i] += lookup[i - coins[index]];
 		}
+		index++;
 	}
-	for(let i = 0; i < lookupTable.length; i++){
-		for(let j = 0; j <= target; j++){
-			if(i === 0){
-				lookupTable[i].push(1);
-			} else {
-				let topValue = lookupTable[i-1][j] ? lookupTable[i-1][j] : 1;
-				let twoLeftValue = (j >= coins[i]) ? lookupTable[i][j-coins[i]] : 0;
-				lookupTable[i].push(topValue+twoLeftValue);
-			}
-		}
-	}
-	
-	return lookupTable[maxCoinIDX][target];
+	return lookup[lookup.length - 1];
 }
