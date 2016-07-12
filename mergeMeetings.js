@@ -18,7 +18,7 @@ condenseMeetingTimes(ranges) //=> [
 */
 // Constraints: Time Complexity < O(n^2), Space Complexity O(n)
 
-function condenseMeetingTimes(meetingTimes){
+const condenseMeetingTimes = (meetingTimes) => {
 	let mergedMeetings;
 	
 	let sortedTimes = meetingTimes.slice().sort((a,b) => {
