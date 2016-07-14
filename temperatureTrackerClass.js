@@ -12,27 +12,39 @@
 // * If there is more than one mode, return any of the modes.
 
 var TemperatureTracker = function(){
-	this.temperatures = {
-		total: 0,
-	};
+	// For tracking Max and Min temperatures
 	this.maxTemperature = null;
 	this.minTemperature = null;
+	// For tracking Mean temperature
+	this.numberOfTemperatures = 0;
+	this.sumOfTemperatures = 0;
 	this.meanTemperature = null;
+	// For tracking Mode of temperatures
+	this.temperatureOccurrences = new Array(111).fill(0);
+	this.mostOccurrences = 0;
 	this.mode = null;
 }
 
 TemperatureTracker.prototype.insert = function(temp){
+	// Return an error if temperature provided is not a number, or not between 0 and 110
 	if(typeof temp !== 'number' || temp < 0 || temp > 110){
 		return 'Error, temperature must be a number between 0 and 110'
 	}
-	// increase counter on temp
-	this.temperatures[temp] = this.temperatures[temp] ? this.temperatures[temp] + 1 : 1;
-	this.temperatures.total = this.temperatures.total + 1;
+	// Calculate new Mean temperature
+	this.numberOfTemperatures++;
+	this.sumOfTemperatures += temp;
+	this.meanTemperature = this.sumOfTemperatures / this.numberOfTemperatures;
 
+	// Determine if mode has changed
+	this.temperatureOccurrences[temp]++;
+	// If occurences for provided temp is higher than mostOccurrences
+	if(this.temperatureOccurrences[temp] > this.mostOccurrences){
+		this.mostOccurrences = this.temperatureOccurrences[temp];
+		this.mode = temp;
+	}
+	// Determine if there are new Max or Min temperatures
 	this.maxTemperature = (this.maxTemperature !== null) ? Math.max(this.maxTemperature,temp) : temp;
 	this.minTemperature = (this.minTemperature !== null) ? Math.min(this.minTemperature,temp) : temp;
-	this.meanTemperature = (this.meanTemperature !== null) ? ((this.meanTemperature * (this.temperatures.total - 1) + temp)/(this.temperatures.total)) : temp;
-	this.mode = (this.mode !== null) ? (this.temperatures[temp] > this.mode.count ? this.mode = {temp, count: this.temperatures[temp]} : this.mode) : { temp, count: 1 };
 }
 
 TemperatureTracker.prototype.getMax = function(){
