@@ -18,7 +18,8 @@ BinaryTree.prototype.addRight = function(value){
 }
 
 BinaryTree.prototype.getAncestorPath = function(target){
-	if(this === target){
+	// console.log(`getAncestorPath called on ${this.value}`)
+	if(this.value === target){
 	  return [this];
 	}
 	if(this.left){
@@ -65,6 +66,7 @@ let btLeft = bt.addLeft(4);
 let btLeftLeft = btLeft.addLeft(1);
 let btLeftRight = btLeft.addRight(7);
 
-
+let LCA17 = bt.getClosestCommonAncestor(1,7);
 let pathTo1 = bt.getAncestorPath(1);
 console.log('pathTo1:',pathTo1)
+console.log('LCA17:',LCA17)
