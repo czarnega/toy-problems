@@ -2,7 +2,7 @@
 // a^3 + b^3 = c^3 + d^3, where a,b,c,d are integers between 1 and 1,000
 
 function quadCube(){
-	let n = 50;
+	let n = 1000;
 	let dict = {};
 	
 	for(let c = 1; c <= n; c++){
@@ -17,12 +17,11 @@ function quadCube(){
 	}
 	
 	for(let key in dict){
-		dict[key].forEach(pair1 => {
-			dict[key].forEach(pair2 => {
+		let list = dict[key];
+		for(let pair1 of list){
+			for(let pair2 of list){
 				console.log(`${pair1},${pair2}`)
-			})
-		})
+			}
+		}
 	}
 }
-
-
