@@ -32,3 +32,21 @@ const asyncMap = (tasks, callback) => (
 //     })
 //   })
 // };  
+
+// generator solution
+// var asyncMap = (tasks, callback) => {
+//   var resultsArray = [];
+  
+//   function* tasker(tasks,callback){
+//     for(var i = 0; i < tasks.length; i++) {
+//       var current = yield( tasks[i](function(val){ gen.next(val); }) ); 
+//       resultsArray.push(current);
+//       if(resultsArray.length === tasks.length){
+//         callback(resultsArray);
+//       }
+//     }
+//   };
+  
+//   var gen = tasker(tasks,callback);
+//   gen.next();
+// };  
