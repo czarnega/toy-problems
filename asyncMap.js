@@ -19,4 +19,16 @@ const asyncMap = (tasks, callback) => (
 	)))
 	.then( results => callback(results)) 
 );
- 
+
+// iterator solution
+// var asyncMap = function(tasks, callback){
+//   var results = [], count = 0;
+//   tasks.forEach(function(task, i){
+//     task(function(value){
+//       results[i] = value;
+//       if(++count == tasks.length){
+//         callback(results);
+//       }
+//     })
+//   })
+// };  
