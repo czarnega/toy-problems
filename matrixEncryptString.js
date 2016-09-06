@@ -40,29 +40,5 @@ function matrixEncryptString(string){
 		}
 		result += temp + ' ';
 	}
-	result = result.trim();
-	console.log(result);
-	
+	return result.trim();
 }
-
-var str = 'haveaniceday';
-var L = str.length;
-var min = Math.floor(Math.sqrt(L))
-var max = Math.ceil(Math.sqrt(L))
-
-console.log('min:',min)
-console.log('max:',max)
-
-var matrix = new Array(min).fill().map(()=>new Array())
-
-console.log(matrix)
-
-for(let i = 0; i < min; i++){
-	for(let j = 0; j < max; j++){
-		if(i+j < L){
-			matrix[i][j] = str[(i*max)+j]
-		}
-	}
-}
-
-console.log(matrix)
