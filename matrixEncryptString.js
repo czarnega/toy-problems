@@ -20,13 +20,17 @@ function matrixEncryptString(string){
 	let L = string.length;
 	let min = Math.floor(Math.sqrt(L))
 	let max = Math.ceil(Math.sqrt(L))
+
+	if(min * max < L){
+		min++;
+	}
 	
 	let matrix = new Array(min).fill().map(()=>new Array());
 	
 	for(let i = 0; i < min; i++){
 		for(let j = 0; j < max; j++){
 			if(i+j < L){
-				matrix[i][j] = str[(i*max)+j]
+				matrix[i][j] = string[(i*max)+j]
 			}
 		}
 	}
