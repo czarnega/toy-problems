@@ -11,6 +11,7 @@ function timeBuilder(hour,minutes){
 
 	if (minutes < 30) {
 		hourString = hourToString(hour);
+		minuteString = minutesToString(minutes);
 		if(minutes === 1 || minutes === 59){
 			minuteString += ' minute ';
 		} else if (minutes === 15 || minutes === 45){
