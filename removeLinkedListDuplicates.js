@@ -6,25 +6,35 @@
 // Sample Output:
 // 1 2 3 4
 this.removeDuplicates=function(head){
-  //Write your code here
-    let currentNode = head;
-    let nextNode = currentNode.next;
-    let result = [];
-    result.push(currentNode.data);
-    while(nextNode){
-        let same = false;
-        do {
-            if(currentNode.data === nextNode.data){
-                same = true;
-                nextNode = nextNode.next;
-            } else {
-                same = false;
-                currentNode.next = nextNode;
-            }
-        } while (same);
-        currentNode = nextNode;
-        result.push(currentNode.data);
-        nextNode = currentNode.next;
-    }
-    console.log(result.join(' '))
+	if(head){
+			let prev = head;
+			let current = head.next;
+			let hash = {}, result = [];
+			result.push(head.data)
+			hash[head.data] = true;
+			while(current != null) {
+					if(!hash[current.data]) {
+							result.push(current.data)
+							hash[current.data] = true;
+					} else {
+							prev.next = current.next;
+					}
+					prev = current;
+					current = current.next;
+			}
+			console.log(result.join(' '))
+	} else {
+			console.log('')
+	}
+
+		// let currentNode = head;
+		// let result = [];
+		// while(curretNode.next){
+		//     let nextNode = currentNode.next;
+		//     result.push(currentNode.data);
+				
+
+		//     currentNode = nextNode;
+		//     nextNode = currentNode.next;
+		// }
 }
